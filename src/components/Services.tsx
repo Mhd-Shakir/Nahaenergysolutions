@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { Home, Building2, Wrench, Sun, Battery, Leaf } from "lucide-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

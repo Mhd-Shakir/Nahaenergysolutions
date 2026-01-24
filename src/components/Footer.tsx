@@ -1,5 +1,8 @@
+"use client";
+
 import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import nahaLogo from "@/assets/naha-logo.png";
 
 const Footer = () => {
@@ -14,11 +17,11 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-12">
           {/* Brand Column */}
           <div className="space-y-6">
-            <Link to="/" className="block">
-              <img
+            <Link href="/" className="block">
+              <Image
                 src={nahaLogo}
                 alt="Naha Energy Solutions"
-                className="h-10 bg-transparent object-contain brightness-0 invert"
+                className="h-10 w-auto bg-transparent object-contain brightness-0 invert"
               />
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
@@ -49,7 +52,7 @@ const Footer = () => {
               ].map((link) => (
                 <li key={link.name}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-muted-foreground hover:text-solar-green transition-colors flex items-center gap-2"
                   >
                     {link.name}
@@ -71,7 +74,7 @@ const Footer = () => {
               ].map((link) => (
                 <li key={link.name}>
                   <Link
-                    to={link.href}
+                    href={link.href}
                     className="text-muted-foreground hover:text-solar-green transition-colors flex items-center gap-2"
                   >
                     {link.name}

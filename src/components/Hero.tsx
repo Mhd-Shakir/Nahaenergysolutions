@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { ArrowRight, Zap, Shield, TrendingDown } from "lucide-react";
+import { ArrowRight, Zap, Shield, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import heroImage from "@/assets/hero-solar.jpg";
 
 const Hero = () => {
@@ -14,7 +17,7 @@ const Hero = () => {
   const stats = [
     { icon: Zap, value: "50%", label: "Energy Savings" },
     { icon: Shield, value: "25yr", label: "Warranty" },
-    { icon: TrendingDown, value: "₹0", label: "Down Payment" },
+    { icon: TrendingUp, value: "₹0", label: "Down Payment" },
   ];
 
   return (
@@ -24,10 +27,13 @@ const Hero = () => {
     >
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <img
+        <Image
           src={heroImage}
           alt="Solar panels on rooftop"
-          className="w-full h-full object-cover"
+          fill
+          className="object-cover"
+          quality={85}
+          priority
         />
         <div className="absolute inset-0 gradient-hero opacity-80" />
         <div className="absolute inset-0 bg-gradient-to-b from-solar-slate/90 via-solar-slate/70 to-solar-slate/90" />

@@ -1,6 +1,8 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { Zap, Building2, Home, Factory } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -224,7 +226,7 @@ const Projects = () => {
                 >
                     <p className="text-muted-foreground text-lg">
                         Ready to start your solar journey?{" "}
-                        <Link to="/contact" className="text-primary font-semibold hover:underline">
+                        <Link href="/contact" className="text-primary font-semibold hover:underline">
                             Get your free quote today →
                         </Link>
                     </p>

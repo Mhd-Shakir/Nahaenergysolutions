@@ -1,6 +1,9 @@
+"use client";
+
 import { motion } from "framer-motion";
 import { HelpCircle, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
 
 const FAQ = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
@@ -134,13 +137,13 @@ const FAQ = () => {
                         <p className="text-muted-foreground mb-6">
                             Our solar experts are here to help. Get in touch for personalized answers.
                         </p>
-                        <a
-                            href="#contact"
+                        <Link
+                            href="/contact"
                             className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary to-secondary text-primary-foreground font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
                         >
                             Contact Us
                             <ChevronDown className="w-4 h-4 rotate-[-90deg]" />
-                        </a>
+                        </Link>
                     </motion.div>
                 </div>
             </div>

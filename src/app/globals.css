@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222 47% 11%;
+
+        --card: 0 0% 100%;
+        --card-foreground: 222 47% 11%;
+
+        --popover: 0 0% 100%;
+        --popover-foreground: 222 47% 11%;
+
+        --primary: 221 100% 56%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 200 100% 59%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 210 40% 96%;
+        --muted-foreground: 215 16% 47%;
+
+        --accent: 221 100% 95%;
+        --accent-foreground: 221 100% 25%;
+
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 214 32% 91%;
+        --input: 214 32% 91%;
+        --ring: 221 100% 56%;
+
+        --radius: 0.75rem;
+
+        /* Custom Naha Energy tokens */
+        --energy-blue: 221 100% 56%;
+        --energy-blue-dark: 221 100% 46%;
+        --energy-blue-light: 221 100% 90%;
+        --energy-sky: 200 100% 59%;
+        --energy-sky-light: 200 100% 75%;
+        --energy-accent: 210 100% 50%;
+        --energy-slate: 222 47% 11%;
+        --energy-slate-light: 215 25% 27%;
+
+        /* Gradients */
+        --gradient-energy: linear-gradient(135deg, hsl(221 100% 56%) 0%, hsl(200 100% 59%) 100%);
+        --gradient-hero: linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(215 25% 27%) 100%);
+        --gradient-glow: radial-gradient(ellipse at center, hsl(221 100% 56% / 0.15) 0%, transparent 70%);
+
+        /* Shadows */
+        --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
+        --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
+        --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
+        --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+        --shadow-glow: 0 0 40px hsl(221 100% 56% / 0.3);
+    }
+
+    .dark {
+        --background: 222 47% 6%;
+        --foreground: 210 40% 98%;
+
+        --card: 222 47% 8%;
+        --card-foreground: 210 40% 98%;
+
+        --popover: 222 47% 8%;
+        --popover-foreground: 210 40% 98%;
+
+        --primary: 221 100% 56%;
+        --primary-foreground: 0 0% 100%;
+
+        --secondary: 200 100% 59%;
+        --secondary-foreground: 0 0% 100%;
+
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+
+        --accent: 221 100% 15%;
+        --accent-foreground: 221 100% 80%;
+
+        --destructive: 0 63% 31%;
+        --destructive-foreground: 210 40% 98%;
+
+        --border: 217 33% 17%;
+        --input: 217 33% 17%;
+        --ring: 221 100% 56%;
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+    }
+
+    body {
+        @apply bg-background text-foreground antialiased;
+        font-family: 'Inter', sans-serif;
+        overflow-x: hidden;
+        margin: 0;
+        padding: 0;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        font-family: 'Space Grotesk', sans-serif;
+    }
+}
+
+@layer components {
+    .gradient-energy {
+        background: linear-gradient(135deg, hsl(var(--energy-blue)) 0%, hsl(var(--energy-sky)) 100%);
+    }
+
+    .gradient-solar {
+        background: linear-gradient(135deg, hsl(var(--energy-blue)) 0%, hsl(var(--energy-sky)) 100%);
+    }
+
+    .gradient-hero {
+        background: linear-gradient(180deg, hsl(var(--energy-slate)) 0%, hsl(var(--energy-slate-light)) 100%);
+    }
+
+    .text-gradient-energy {
+        background: linear-gradient(135deg, hsl(var(--energy-blue)) 0%, hsl(var(--energy-sky)) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .text-gradient-solar {
+        background: linear-gradient(135deg, hsl(var(--energy-blue)) 0%, hsl(var(--energy-sky)) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .glow-blue {
+        box-shadow: 0 0 40px hsl(var(--energy-blue) / 0.4);
+    }
+
+    .glow-sky {
+        box-shadow: 0 0 40px hsl(var(--energy-sky) / 0.4);
+    }
+
+    /* Backward compatibility aliases */
+    .glow-green {
+        box-shadow: 0 0 40px hsl(var(--energy-blue) / 0.4);
+    }
+
+    .glow-yellow {
+        box-shadow: 0 0 40px hsl(var(--energy-sky) / 0.4);
+    }
+
+    .card-hover {
+        @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+    }
+}

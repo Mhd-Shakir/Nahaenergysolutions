@@ -1,8 +1,12 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
+import Image from "next/image";
 import nahaLogo from "@/assets/naha-logo.png";
 
 interface NavbarProps {
@@ -12,8 +16,8 @@ interface NavbarProps {
 const Navbar = ({ forceDark = false }: NavbarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,14 +43,14 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
     // Check if it's an internal anchor link
     if (href.startsWith("/#")) {
       const sectionId = href.substring(2);
-      if (location.pathname !== "/") {
-        navigate("/");
+      if (pathname !== "/") {
+        router.push("/");
         setTimeout(() => {
           const element = document.querySelector(`#${sectionId}`);
           if (element) {
             element.scrollIntoView({ behavior: "smooth" });
           }
-        }, 100);
+        }, 300); // Increased timeout slightly for navigation delay
       } else {
         const element = document.querySelector(`#${sectionId}`);
         if (element) {
@@ -55,7 +59,7 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
       }
     } else {
       // Navigate to the page
-      navigate(href);
+      router.push(href);
     }
     setIsMobileMenuOpen(false);
   };
@@ -79,12 +83,14 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
               className="flex items-center"
               whileHover={{ scale: 1.02 }}
             >
-              <Link to="/">
-                <img
+              <Link href="/">
+                <Image
                   src={nahaLogo}
                   alt="Naha Energy Solutions"
-                  className={`h-8 sm:h-9 md:h-9 lg:h-10 xl:h-11 bg-transparent object-contain transition-all duration-300 ${!isScrolled && !forceDark ? "brightness-0 invert" : ""
+                  className={`h-8 w-auto sm:h-9 md:h-9 lg:h-10 xl:h-11 object-contain transition-all duration-300 ${!isScrolled && !forceDark ? "brightness-0 invert" : ""
                     }`}
+                // Note: Next/Image handles 'src' as object if imported. 
+                // If using classNames for sizing, width/height props might be overridden or need to be set to 'auto' via CSS.
                 />
               </Link>
             </motion.div>
