@@ -112,7 +112,7 @@ const CTABanner = ({
                             </div>
                             <div className={`flex items-center gap-2 ${variant === "gradient" ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
                                 <div className="w-2 h-2 rounded-full bg-green-500" />
-                                <span>25 Year Warranty</span>
+                                <span>30 Year Warranty</span>
                             </div>
                             <div className={`flex items-center gap-2 ${variant === "gradient" ? "text-primary-foreground/80" : "text-muted-foreground"}`}>
                                 <div className="w-2 h-2 rounded-full bg-green-500" />

@@ -12,7 +12,7 @@ const WhySolar = () => {
     },
     {
       icon: Shield,
-      title: "25 Year Warranty",
+      title: "30 Year Warranty",
       description: "Industry-leading warranty coverage for complete peace of mind.",
     },
     {

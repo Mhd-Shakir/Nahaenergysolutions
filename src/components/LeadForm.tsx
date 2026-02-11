@@ -8,12 +8,20 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 interface Lead {
   name: string;
   phone: string;
   email: string;
   billAmount: string;
+  systemSize: string;
   message: string;
 }
 
@@ -23,6 +31,7 @@ const LeadForm = () => {
     phone: "",
     email: "",
     billAmount: "",
+    systemSize: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -68,6 +77,7 @@ const LeadForm = () => {
       phone: formData.phone,
       email: formData.email,
       billAmount: Number(formData.billAmount),
+      systemSize: formData.systemSize,
       message: formData.message,
       status: "New",
       createdAt: new Date().toISOString(),
@@ -107,7 +117,7 @@ const LeadForm = () => {
               className="gradient-solar text-white border-0 font-semibold px-8 hover:opacity-90 transition-opacity"
               onClick={() => {
                 setIsSubmitted(false);
-                setFormData({ name: "", phone: "", email: "", billAmount: "", message: "" });
+                setFormData({ name: "", phone: "", email: "", billAmount: "", systemSize: "", message: "" });
               }}
             >
               Submit Another Request
@@ -255,6 +265,27 @@ const LeadForm = () => {
                       className="pl-10 h-10 text-sm"
                     />
                   </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="systemSize" className="text-xs font-medium">
+                    Interested System Size (Optional)
+                  </Label>
+                  <Select
+                    onValueChange={(value) =>
+                      setFormData((prev) => ({ ...prev, systemSize: value }))
+                    }
+                    value={formData.systemSize}
+                  >
+                    <SelectTrigger className="h-10 text-sm">
+                      <SelectValue placeholder="Select system size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="3KW">3 KW System</SelectItem>
+                      <SelectItem value="5KW">5 KW System</SelectItem>
+                      <SelectItem value="8KW">8 KW System</SelectItem>
+                    </SelectContent>
+                  </Select>
                 </div>
 
                 <div className="space-y-2">

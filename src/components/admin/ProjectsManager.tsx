@@ -53,7 +53,7 @@ const ProjectsManager = () => {
     }, []);
 
     const loadProjects = () => {
-        const stored = localStorage.getItem("nahasolar_projects");
+        const stored = localStorage.getItem("nahasolar_projects_v3");
         if (stored) {
             setProjects(JSON.parse(stored));
         } else {
@@ -65,7 +65,7 @@ const ProjectsManager = () => {
                     location: "Bangalore, Karnataka",
                     category: "Residential",
                     iconName: "Home",
-                    capacity: "15 kW",
+                    capacity: "15 KW",
                     image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop",
                     savings: "₹18,000/month",
                     gradient: "from-blue-500/20 to-cyan-500/20",
@@ -76,7 +76,7 @@ const ProjectsManager = () => {
                     location: "Mumbai, Maharashtra",
                     category: "Commercial",
                     iconName: "Building2",
-                    capacity: "50 kW",
+                    capacity: "50 KW",
                     image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop",
                     savings: "₹65,000/month",
                     gradient: "from-purple-500/20 to-pink-500/20",
@@ -87,7 +87,7 @@ const ProjectsManager = () => {
                     location: "Pune, Maharashtra",
                     category: "Industrial",
                     iconName: "Factory",
-                    capacity: "200 kW",
+                    capacity: "200 KW",
                     image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop",
                     savings: "₹2,50,000/month",
                     gradient: "from-green-500/20 to-emerald-500/20",
@@ -98,7 +98,7 @@ const ProjectsManager = () => {
                     location: "Delhi NCR",
                     category: "Residential",
                     iconName: "Home",
-                    capacity: "100 kW",
+                    capacity: "100 KW",
                     image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
                     savings: "₹1,20,000/month",
                     gradient: "from-orange-500/20 to-yellow-500/20",
@@ -109,7 +109,7 @@ const ProjectsManager = () => {
                     location: "Hyderabad, Telangana",
                     category: "Commercial",
                     iconName: "Building2",
-                    capacity: "75 kW",
+                    capacity: "75 KW",
                     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop",
                     savings: "₹90,000/month",
                     gradient: "from-red-500/20 to-pink-500/20",
@@ -120,14 +120,14 @@ const ProjectsManager = () => {
                     location: "Chennai, Tamil Nadu",
                     category: "Commercial",
                     iconName: "Building2",
-                    capacity: "150 kW",
+                    capacity: "150 KW",
                     image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
                     savings: "₹1,80,000/month",
                     gradient: "from-indigo-500/20 to-blue-500/20",
                 },
             ];
             setProjects(defaults);
-            localStorage.setItem("nahasolar_projects", JSON.stringify(defaults));
+            localStorage.setItem("nahasolar_projects_v3", JSON.stringify(defaults));
         }
     };
 
@@ -160,7 +160,7 @@ const ProjectsManager = () => {
 
         const updatedProjects = [...projects, project];
         setProjects(updatedProjects);
-        localStorage.setItem("nahasolar_projects", JSON.stringify(updatedProjects));
+        localStorage.setItem("nahasolar_projects_v3", JSON.stringify(updatedProjects));
 
         // Reset form
         setNewProject({
@@ -183,7 +183,7 @@ const ProjectsManager = () => {
     const handleDeleteProject = (id: string) => {
         const updatedProjects = projects.filter(p => p.id !== id);
         setProjects(updatedProjects);
-        localStorage.setItem("nahasolar_projects", JSON.stringify(updatedProjects));
+        localStorage.setItem("nahasolar_projects_v3", JSON.stringify(updatedProjects));
         toast({
             title: "Deleted",
             description: "Project removed successfully.",
@@ -257,7 +257,7 @@ const ProjectsManager = () => {
                         <Label htmlFor="capacity">Capacity</Label>
                         <Input
                             id="capacity"
-                            placeholder="e.g. 15 kW"
+                            placeholder="e.g. 15 KW"
                             value={newProject.capacity || ""}
                             onChange={(e) => handleInputChange("capacity", e.target.value)}
                         />

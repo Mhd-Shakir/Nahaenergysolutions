@@ -26,7 +26,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Bangalore, Karnataka",
         category: "Residential",
         iconName: "Home",
-        capacity: "15 kW",
+        capacity: "15 KW",
         image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop",
         savings: "₹18,000/month",
         gradient: "from-blue-500/20 to-cyan-500/20",
@@ -37,7 +37,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Mumbai, Maharashtra",
         category: "Commercial",
         iconName: "Building2",
-        capacity: "50 kW",
+        capacity: "50 KW",
         image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop",
         savings: "₹65,000/month",
         gradient: "from-purple-500/20 to-pink-500/20",
@@ -48,7 +48,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Pune, Maharashtra",
         category: "Industrial",
         iconName: "Factory",
-        capacity: "200 kW",
+        capacity: "200 KW",
         image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop",
         savings: "₹2,50,000/month",
         gradient: "from-green-500/20 to-emerald-500/20",
@@ -59,7 +59,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Delhi NCR",
         category: "Residential",
         iconName: "Home",
-        capacity: "100 kW",
+        capacity: "100 KW",
         image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop",
         savings: "₹1,20,000/month",
         gradient: "from-orange-500/20 to-yellow-500/20",
@@ -70,7 +70,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Hyderabad, Telangana",
         category: "Commercial",
         iconName: "Building2",
-        capacity: "75 kW",
+        capacity: "75 KW",
         image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=800&h=600&fit=crop",
         savings: "₹90,000/month",
         gradient: "from-red-500/20 to-pink-500/20",
@@ -81,7 +81,7 @@ const DEFAULT_PROJECTS: Project[] = [
         location: "Chennai, Tamil Nadu",
         category: "Commercial",
         iconName: "Building2",
-        capacity: "150 kW",
+        capacity: "150 KW",
         image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop",
         savings: "₹1,80,000/month",
         gradient: "from-indigo-500/20 to-blue-500/20",
@@ -92,12 +92,12 @@ const Projects = () => {
     const [projects, setProjects] = useState<Project[]>(DEFAULT_PROJECTS);
 
     useEffect(() => {
-        const stored = localStorage.getItem("nahasolar_projects");
+        const stored = localStorage.getItem("nahasolar_projects_v3");
         if (stored) {
             setProjects(JSON.parse(stored));
         } else {
             // Seed defaults if empty
-            localStorage.setItem("nahasolar_projects", JSON.stringify(DEFAULT_PROJECTS));
+            localStorage.setItem("nahasolar_projects_v3", JSON.stringify(DEFAULT_PROJECTS));
             setProjects(DEFAULT_PROJECTS);
         }
     }, []);

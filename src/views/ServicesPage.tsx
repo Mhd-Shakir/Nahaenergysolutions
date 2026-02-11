@@ -12,47 +12,47 @@ const ServicesPage = () => {
     const services = [
         {
             icon: Home,
-            title: "Residential Solar",
-            description: "Transform your home into a clean energy powerhouse",
+            title: "3KW System",
+            description: "Perfect for small to medium-sized homes (2-3 BHK). Generates ~12-15 units per day.",
             features: [
-                "Rooftop solar panel installation",
-                "Custom design for maximum efficiency",
-                "Net metering connectivity",
+                "Saves ₹3,000 - ₹4,000/month",
+                "Requires ~300 sq. ft. roof area",
+                "Subsidy Available",
                 "Smart energy monitoring system",
-                "25-year performance warranty",
+                "30-year performance warranty",
                 "Government subsidy assistance"
             ],
-            pricing: "Starting from ₹2.5 Lakhs",
+            pricing: "Approx. ₹1.8 - 2 Lakhs",
             image: "https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=600&fit=crop"
         },
         {
-            icon: Building2,
-            title: "Commercial Solar",
-            description: "Power your business with sustainable solar energy",
+            icon: CheckCircle,
+            title: "5KW System",
+            description: "Our most popular choice for large homes/villas (3-4 BHK). Generates ~20-25 units per day.",
             features: [
-                "Large-scale installations",
-                "Industrial & commercial capacity",
-                "Tax benefits & incentives",
-                "Green energy certification",
-                "Rapid ROI (3-5 years)",
+                "Saves ₹5,000 - ₹7,000/month",
+                "Requires ~500 sq. ft. roof area",
+                "High ROI (3-4 years)",
+                "Covers ACs and heavy appliances",
+                "30-year performance warranty",
                 "24/7 monitoring & support"
             ],
-            pricing: "Custom quote based on requirements",
+            pricing: "Approx. ₹3 - 3.5 Lakhs",
             image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&h=600&fit=crop"
         },
         {
-            icon: Wrench,
-            title: "Maintenance & Support",
-            description: "Keep your solar system performing at peak efficiency",
+            icon: Building2,
+            title: "8KW System",
+            description: "High-capacity system for large villas or small offices. Generates ~32-40 units per day.",
             features: [
-                "Annual maintenance packages",
-                "Panel cleaning & inspection",
-                "Performance optimization",
-                "Inverter servicing",
-                "24/7 emergency support",
+                "Saves ₹9,000 - ₹12,000/month",
+                "Requires ~800 sq. ft. roof area",
+                "Maximum grid independence",
+                "Industrial/Commercial grade efficiency",
+                "30-year performance warranty",
                 "Remote monitoring"
             ],
-            pricing: "₹5,000/year onwards",
+            pricing: "Approx. ₹4.5 - 5 Lakhs",
             image: "https://images.unsplash.com/photo-1581094271901-8022df4466f9?w=800&h=600&fit=crop"
         }
     ];

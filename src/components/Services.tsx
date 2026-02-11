@@ -8,29 +8,29 @@ const Services = () => {
   const services = [
     {
       icon: Home,
-      title: "Residential Solar",
+      title: "3KW System",
       description:
-        "Transform your home into a power station. Our rooftop solar panels reduce your electricity bills by up to 90% while increasing property value.",
-      features: ["Custom roof designs", "Smart monitoring", "Net metering ready"],
+        "Perfect for small to medium-sized homes (2-3 BHK). Generates ~12-15 units per day. Ideal for reducing basic electricity bills.",
+      features: ["Saves ₹3,000 - ₹4,000/month", "Requires ~300 sq. ft. roof area", "Subsidy Available"],
+    },
+    {
+      icon: Sun,
+      title: "5KW System",
+      description:
+        "Our most popular choice for large homes/villas (3-4 BHK). Generates ~20-25 units per day. Covers ACs and heavy appliances.",
+      features: ["Saves ₹5,000 - ₹7,000/month", "Requires ~500 sq. ft. roof area", "High ROI"],
     },
     {
       icon: Building2,
-      title: "Commercial Solar",
+      title: "8KW System",
       description:
-        "Power your business sustainably. Large-scale installations for factories, offices, and warehouses with rapid ROI.",
-      features: ["Industrial capacity", "Tax benefits", "Green certification"],
-    },
-    {
-      icon: Wrench,
-      title: "Maintenance & Support",
-      description:
-        "Keep your solar investment performing at peak efficiency with our comprehensive maintenance packages.",
-      features: ["24/7 monitoring", "Annual cleaning", "Performance guarantee"],
+        "High-capacity system for large villas or small offices. Generates ~32-40 units per day. Maximum independence from the grid.",
+      features: ["Saves ₹9,000 - ₹12,000/month", "Requires ~800 sq. ft. roof area", "Commercial/Large Res. use"],
     },
   ];
 
   const benefits = [
-    { icon: Sun, label: "Free Energy", value: "25+ Years" },
+    { icon: Sun, label: "Free Energy", value: "30+ Years" },
     { icon: Battery, label: "Battery Backup", value: "Available" },
     { icon: Leaf, label: "CO2 Saved", value: "4 Tons/Year" },
   ];

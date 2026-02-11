@@ -15,7 +15,7 @@ const FAQ = () => {
         },
         {
             question: "What is the cost of installing solar panels?",
-            answer: "Solar installation costs vary based on system size and requirements. For a typical residential installation (3-5 kW), costs range from ₹1.5-3 lakhs. However, with government subsidies and financing options, your net cost can be significantly lower. Most systems pay for themselves within 4-6 years.",
+            answer: "Solar installation costs vary based on system size. We offer standard packages: 3KW, 5KW, and 8KW. A 3KW system typically costs around ₹1.8-2 lakhs, while larger systems offer better economies of scale. With government subsidies, your net cost is significantly lower.",
         },
         {
             question: "Do solar panels work during cloudy days or monsoon?",
@@ -23,7 +23,7 @@ const FAQ = () => {
         },
         {
             question: "What is the lifespan of solar panels?",
-            answer: "Quality solar panels last 25-30 years with minimal maintenance. We provide a 25-year performance warranty, guaranteeing at least 80% efficiency after 25 years. The inverter typically needs replacement after 10-15 years.",
+            answer: "Quality solar panels last 30+ years with minimal maintenance. We provide a 30-year performance warranty, guaranteeing at least 80% efficiency after 30 years. The inverter typically needs replacement after 10-15 years.",
         },
         {
             question: "Is government subsidy available for solar installation?",

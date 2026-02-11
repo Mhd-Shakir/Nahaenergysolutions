@@ -48,7 +48,7 @@ const Stats = () => {
         },
         {
             icon: Award,
-            title: "25 Year Warranty",
+            title: "30 Year Warranty",
             description: "Performance Guarantee",
         },
     ];
