@@ -67,31 +67,37 @@ const LeadForm = () => {
 
     setIsSubmitting(true);
 
-    // Simulate API call - In production, this would connect to Lovable Cloud
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          billAmount: Number(formData.billAmount),
+          systemSize: formData.systemSize,
+          message: formData.message,
+        }),
+      });
 
-    // Store lead in localStorage for MVP demo
-    const leads = JSON.parse(localStorage.getItem("nahasolar_leads") || "[]");
-    leads.unshift({
-      name: formData.name,
-      phone: formData.phone,
-      email: formData.email,
-      billAmount: Number(formData.billAmount),
-      systemSize: formData.systemSize,
-      message: formData.message,
-      status: "New",
-      createdAt: new Date().toISOString(),
-      id: Date.now().toString(),
-    });
-    localStorage.setItem("nahasolar_leads", JSON.stringify(leads));
+      if (!response.ok) throw new Error("Failed to submit");
+      
+      setIsSubmitting(false);
+      setIsSubmitted(true);
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    toast({
-      title: "Quote Request Received! 🎉",
-      description: "Our solar expert will contact you within 24 hours.",
-    });
+      toast({
+        title: "Quote Request Received! 🎉",
+        description: "Our solar expert will contact you within 24 hours.",
+      });
+    } catch (error) {
+      setIsSubmitting(false);
+      toast({
+        title: "Error submitting form",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (isSubmitted) {
@@ -186,16 +192,16 @@ const LeadForm = () => {
           >
             <form
               onSubmit={handleSubmit}
-              className="p-6 md:p-7 rounded-2xl bg-card shadow-2xl border"
+              className="p-4 md:p-5 rounded-xl bg-card shadow-2xl border"
             >
-              <h3 className="font-display text-xl md:text-2xl font-bold mb-1.5">
+              <h3 className="font-display text-lg md:text-xl font-bold mb-1">
                 Request Your Free Quote
               </h3>
-              <p className="text-muted-foreground text-sm mb-6">
+              <p className="text-muted-foreground text-xs mb-4">
                 Enter your details below and we'll get back to you soon.
               </p>
 
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div className="space-y-2">
                   <Label htmlFor="name" className="text-xs font-medium">
                     Full Name
@@ -208,7 +214,7 @@ const LeadForm = () => {
                       placeholder="Enter your name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="pl-10 h-10 text-sm"
+                      className="pl-10 h-9 text-sm"
                     />
                   </div>
                 </div>
@@ -226,7 +232,7 @@ const LeadForm = () => {
                       placeholder="10-digit mobile number"
                       value={formData.phone}
                       onChange={handleChange}
-                      className="pl-10 h-10 text-sm"
+                      className="pl-10 h-9 text-sm"
                     />
                   </div>
                 </div>
@@ -244,7 +250,7 @@ const LeadForm = () => {
                       placeholder="your@email.com"
                       value={formData.email}
                       onChange={handleChange}
-                      className="pl-10 h-10 text-sm"
+                      className="pl-10 h-9 text-sm"
                     />
                   </div>
                 </div>
@@ -262,7 +268,7 @@ const LeadForm = () => {
                       placeholder="e.g., 5000"
                       value={formData.billAmount}
                       onChange={handleChange}
-                      className="pl-10 h-10 text-sm"
+                      className="pl-10 h-9 text-sm"
                     />
                   </div>
                 </div>
@@ -277,7 +283,7 @@ const LeadForm = () => {
                     }
                     value={formData.systemSize}
                   >
-                    <SelectTrigger className="h-10 text-sm">
+                    <SelectTrigger className="h-9 text-sm">
                       <SelectValue placeholder="Select system size" />
                     </SelectTrigger>
                     <SelectContent>
@@ -300,7 +306,7 @@ const LeadForm = () => {
                       placeholder="Tell us about your requirements..."
                       value={formData.message}
                       onChange={handleChange}
-                      className="pl-10 min-h-[80px] resize-none text-sm"
+                      className="pl-10 min-h-[60px] resize-none text-sm"
                     />
                   </div>
                 </div>
@@ -308,7 +314,7 @@ const LeadForm = () => {
                 <Button
                   type="submit"
                   size="default"
-                  className="w-full gradient-solar border-0 font-semibold text-base h-11 gap-2"
+                  className="w-full gradient-solar border-0 font-semibold text-sm h-10 gap-2"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? (

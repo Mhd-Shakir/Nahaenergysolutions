@@ -24,7 +24,7 @@ import Link from "next/link";
 import LeadsTable, { Lead } from "@/components/admin/LeadsTable";
 import ProjectsManager from "@/components/admin/ProjectsManager";
 
-const ADMIN_PIN = "1234";
+// Admin password is now verified via API using .env.local
 
 const Admin = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,29 +41,46 @@ const Admin = () => {
     }
   }, []);
 
-  const fetchLeads = () => {
+  const fetchLeads = async () => {
     setIsLoading(true);
-    const storedLeads = JSON.parse(
-      localStorage.getItem("nahasolar_leads") || "[]"
-    );
-    setLeads(storedLeads);
+    try {
+      const res = await fetch('/api/leads');
+      const data = await res.json();
+      setLeads(data);
+    } catch (error) {
+      console.error(error);
+    }
     setIsLoading(false);
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (pin === ADMIN_PIN) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem("nahasolar_admin_auth", "true");
-      fetchLeads();
-      toast({
-        title: "Welcome Admin!",
-        description: "You are now logged in to the dashboard.",
+    try {
+      const res = await fetch('/api/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: pin }),
       });
-    } else {
+
+      if (res.ok) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem("nahasolar_admin_auth", "true");
+        fetchLeads();
+        toast({
+          title: "Welcome Admin!",
+          description: "You are now logged in to the dashboard.",
+        });
+      } else {
+        toast({
+          title: "Invalid Password",
+          description: "Please enter the correct admin password.",
+          variant: "destructive",
+        });
+      }
+    } catch (error) {
       toast({
-        title: "Invalid PIN",
-        description: "Please enter the correct admin PIN.",
+        title: "Login Error",
+        description: "There was an error accessing the server.",
         variant: "destructive",
       });
     }
@@ -79,26 +96,42 @@ const Admin = () => {
     });
   };
 
-  const updateLeadStatus = (id: string, newStatus: string) => {
+  const updateLeadStatus = async (id: string, newStatus: string) => {
     const updatedLeads = leads.map((lead) =>
       lead.id === id ? { ...lead, status: newStatus } : lead
     );
     setLeads(updatedLeads);
-    localStorage.setItem("nahasolar_leads", JSON.stringify(updatedLeads));
-    toast({
-      title: "Status Updated",
-      description: `Lead status changed to ${newStatus}`,
-    });
+
+    try {
+      await fetch('/api/leads', {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus }),
+      });
+      toast({
+        title: "Status Updated",
+        description: `Lead status changed to ${newStatus}`,
+      });
+    } catch (error) {
+      fetchLeads(); // Revert on failure
+    }
   };
 
-  const deleteLead = (id: string) => {
+  const deleteLead = async (id: string) => {
     const updatedLeads = leads.filter((lead) => lead.id !== id);
     setLeads(updatedLeads);
-    localStorage.setItem("nahasolar_leads", JSON.stringify(updatedLeads));
-    toast({
-      title: "Lead Deleted",
-      description: "The lead has been removed.",
-    });
+
+    try {
+      await fetch(`/api/leads?id=${id}`, {
+        method: 'DELETE',
+      });
+      toast({
+        title: "Lead Deleted",
+        description: "The lead has been removed.",
+      });
+    } catch (error) {
+      fetchLeads(); // Revert on failure
+    }
   };
 
   // Login Screen
@@ -117,25 +150,24 @@ const Admin = () => {
               </div>
               <h1 className="font-display text-2xl font-bold">Admin Panel</h1>
               <p className="text-muted-foreground mt-2">
-                Enter your PIN to access the dashboard
+                Enter your password to access the dashboard
               </p>
             </div>
 
             <form onSubmit={handleLogin} className="space-y-6">
               <div className="space-y-2">
                 <Label htmlFor="pin" className="text-sm font-medium">
-                  Admin PIN
+                  Admin Password
                 </Label>
                 <div className="relative">
                   <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                   <Input
                     id="pin"
                     type="password"
-                    placeholder="Enter 4-digit PIN"
+                    placeholder="Enter Admin Password"
                     value={pin}
                     onChange={(e) => setPin(e.target.value)}
-                    className="pl-10 h-12 text-center tracking-widest text-lg"
-                    maxLength={4}
+                    className="pl-10 h-12 text-lg"
                   />
                 </div>
               </div>
@@ -158,11 +190,6 @@ const Admin = () => {
               </Link>
             </div>
 
-            <div className="mt-4 p-3 bg-muted rounded-lg">
-              <p className="text-xs text-muted-foreground text-center">
-                Demo PIN: <span className="font-mono font-bold">1234</span>
-              </p>
-            </div>
           </div>
         </motion.div>
       </div>

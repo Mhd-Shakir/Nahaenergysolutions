@@ -45,7 +45,7 @@ const About = () => {
             name: "Vikram Singh",
             role: "Operations Director",
             image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop",
-            bio: "5000+ installations managed",
+            bio: "1000+ installations managed",
         },
         {
             name: "Ananya Reddy",
@@ -59,7 +59,7 @@ const About = () => {
         { year: "2015", event: "Company Founded", description: "Started with a vision to power India with clean energy" },
         { year: "2017", event: "1,000th Installation", description: "Reached our first major milestone" },
         { year: "2020", event: "National Expansion", description: "Expanded operations to 15 states" },
-        { year: "2023", event: "5,000+ Customers", description: "Became one of India's leading solar providers" },
+        { year: "2023", event: "1,000+ Customers", description: "Became one of India's leading solar providers" },
         { year: "2024", event: "100 MW Milestone", description: "Achieved 100 MW total installed capacity" },
     ];
 

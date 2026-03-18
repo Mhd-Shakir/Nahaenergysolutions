@@ -110,7 +110,10 @@ const Footer = () => {
 
         {/* Bottom Bar (Minimal) */}
         <div className="border-t border-solar-slate-light/30 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
-          <p>© {currentYear} Naha Energy Solutions. All rights reserved.</p>
+          <p className="text-center md:text-left">
+            © {currentYear} Naha Energy Solutions. All rights reserved. <span className="hidden md:inline mx-2">|</span><br className="md:hidden" />
+            Powered by <a href="https://fikavo.com" target="_blank" rel="noopener noreferrer" className="hover:text-solar-green transition-colors">fikavo.com</a>
+          </p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-solar-green transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-solar-green transition-colors">Terms of Service</a>

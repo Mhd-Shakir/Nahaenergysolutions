@@ -7,7 +7,7 @@ const Stats = () => {
     const stats = [
         {
             icon: Users,
-            value: "5,000+",
+            value: "1,000+",
             label: "Happy Customers",
             suffix: "",
             color: "from-blue-500 to-cyan-500",

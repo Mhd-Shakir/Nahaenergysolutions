@@ -17,7 +17,7 @@ const Hero = () => {
   const stats = [
     { icon: Zap, value: "50%", label: "Energy Savings" },
     { icon: Shield, value: "30yr", label: "Warranty" },
-    { icon: TrendingUp, value: "20%", label: "Down Payment" },
+    { icon: TrendingUp, value: "30%", label: "Down Payment" },
   ];
 
   return (
