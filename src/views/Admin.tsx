@@ -14,6 +14,7 @@ import {
   RefreshCw,
   MessageSquare,
   Building2,
+  Quote,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -23,6 +24,7 @@ import { useToast } from "@/hooks/use-toast";
 import Link from "next/link";
 import LeadsTable, { Lead } from "@/components/admin/LeadsTable";
 import ProjectsManager from "@/components/admin/ProjectsManager";
+import TestimonialsManager from "@/components/admin/TestimonialsManager";
 
 // Admin password is now verified via API using .env.local
 
@@ -329,7 +331,7 @@ const Admin = () => {
           transition={{ delay: 0.4 }}
         >
           <Tabs defaultValue="leads" className="space-y-6">
-            <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsList className="grid w-full max-w-3xl grid-cols-3">
               <TabsTrigger value="leads" className="gap-2">
                 <MessageSquare className="w-4 h-4" />
                 Contact Forms
@@ -337,6 +339,10 @@ const Admin = () => {
               <TabsTrigger value="projects" className="gap-2">
                 <Building2 className="w-4 h-4" />
                 Projects Management
+              </TabsTrigger>
+              <TabsTrigger value="testimonials" className="gap-2">
+                <Quote className="w-4 h-4" />
+                Testimonials
               </TabsTrigger>
             </TabsList>
 
@@ -368,6 +374,20 @@ const Admin = () => {
                 </div>
                 <div className="p-6">
                   <ProjectsManager />
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="testimonials" className="space-y-4">
+              <div className="bg-card rounded-xl shadow-sm border overflow-hidden">
+                <div className="p-6 border-b">
+                  <h2 className="font-display font-bold text-xl">Testimonials Manager</h2>
+                  <p className="text-sm text-muted-foreground">
+                    Manage customer testimonials and reviews shown on the website
+                  </p>
+                </div>
+                <div className="p-6">
+                  <TestimonialsManager />
                 </div>
               </div>
             </TabsContent>

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote, ArrowLeft } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -9,64 +10,83 @@ import Link from "next/link";
 import Image from "next/image";
 
 const TestimonialsPage = () => {
-    const allTestimonials = [
-        {
-            name: "Rajesh Kumar",
-            role: "Homeowner, Mumbai",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Naha Energy transformed my home! My electricity bills dropped by 85%. The installation was smooth, and the team was incredibly professional. Best investment I've made!",
-        },
-        {
-            name: "Priya Sharma",
-            role: "Business Owner, Delhi",
-            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Our factory now runs on clean solar energy. The ROI was faster than expected, and we're contributing to a greener future. Highly recommend Naha Energy!",
-        },
-        {
-            name: "Amit Patel",
-            role: "Villa Owner, Bangalore",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Exceptional service from start to finish. The solar panels look sleek on my roof, and the smart monitoring system is amazing. Zero electricity bills for 6 months now!",
-        },
-        {
-            name: "Sneha Reddy",
-            role: "Apartment Complex, Hyderabad",
-            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Installed solar for our entire apartment complex. The common area electricity is now completely free. Great work by the Naha Energy team!",
-        },
-        {
-            name: "Vikram Singh",
-            role: "Hotel Owner, Jaipur",
-            image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Solar installation for our hotel was completed in just 3 days! Professional team, quality products, and excellent post-installation support. Highly satisfied!",
-        },
-        {
-            name: "Meera Iyer",
-            role: "Homeowner, Chennai",
-            image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "The team explained everything clearly and helped us get the government subsidy. Installation was quick and clean. Saving ₹15,000 per month!",
-        },
-        {
-            name: "Arjun Nair",
-            role: "Factory Owner, Pune",
-            image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "200 kW installation for our manufacturing unit. System works flawlessly. The monitoring app is fantastic. Worth every rupee!",
-        },
-        {
-            name: "Anjali Desai",
-            role: "IT Professional, Bangalore",
-            image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Working from home, my electricity bills were huge. After installing solar panels, I'm practically paying nothing. Amazing service by Naha Energy!",
-        },
-    ];
+    const [allTestimonials, setAllTestimonials] = useState<any[]>([]);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("nahasolar_testimonials_v1");
+        if (stored) {
+            setAllTestimonials(JSON.parse(stored));
+        } else {
+            const defaults = [
+                {
+                    id: "1",
+                    name: "Rajesh Kumar",
+                    role: "Homeowner, Mumbai",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Naha Energy transformed my home! My electricity bills dropped by 85%. The installation was smooth, and the team was incredibly professional. Best investment I've made!",
+                },
+                {
+                    id: "2",
+                    name: "Priya Sharma",
+                    role: "Business Owner, Delhi",
+                    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Our factory now runs on clean solar energy. The ROI was faster than expected, and we're contributing to a greener future. Highly recommend Naha Energy!",
+                },
+                {
+                    id: "3",
+                    name: "Amit Patel",
+                    role: "Villa Owner, Bangalore",
+                    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Exceptional service from start to finish. The solar panels look sleek on my roof, and the smart monitoring system is amazing. Zero electricity bills for 6 months now!",
+                },
+                {
+                    id: "4",
+                    name: "Sneha Reddy",
+                    role: "Apartment Complex, Hyderabad",
+                    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Installed solar for our entire apartment complex. The common area electricity is now completely free. Great work by the Naha Energy team!",
+                },
+                {
+                    id: "5",
+                    name: "Vikram Singh",
+                    role: "Hotel Owner, Jaipur",
+                    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Solar installation for our hotel was completed in just 3 days! Professional team, quality products, and excellent post-installation support. Highly satisfied!",
+                },
+                {
+                    id: "6",
+                    name: "Meera Iyer",
+                    role: "Homeowner, Chennai",
+                    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "The team explained everything clearly and helped us get the government subsidy. Installation was quick and clean. Saving ₹15,000 per month!",
+                },
+                {
+                    id: "7",
+                    name: "Arjun Nair",
+                    role: "Factory Owner, Pune",
+                    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "200 kW installation for our manufacturing unit. System works flawlessly. The monitoring app is fantastic. Worth every rupee!",
+                },
+                {
+                    id: "8",
+                    name: "Anjali Desai",
+                    role: "IT Professional, Bangalore",
+                    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Working from home, my electricity bills were huge. After installing solar panels, I'm practically paying nothing. Amazing service by Naha Energy!",
+                },
+            ];
+            setAllTestimonials(defaults);
+            localStorage.setItem("nahasolar_testimonials_v1", JSON.stringify(defaults));
+        }
+    }, []);
 
     return (
         <div className="min-h-screen">

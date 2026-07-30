@@ -1,40 +1,55 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Star, Quote } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
 const Testimonials = () => {
-    const testimonials = [
-        {
-            name: "Rajesh Kumar",
-            role: "Homeowner, Mumbai",
-            image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Naha Energy transformed my home! My electricity bills dropped by 85%. The installation was smooth, and the team was incredibly professional. Best investment I've made!",
-        },
-        {
-            name: "Priya Sharma",
-            role: "Business Owner, Delhi",
-            image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Our factory now runs on clean solar energy. The ROI was faster than expected, and we're contributing to a greener future. Highly recommend Naha Energy!",
-        },
-        {
-            name: "Amit Patel",
-            role: "Villa Owner, Bangalore",
-            image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Exceptional service from start to finish. The solar panels look sleek on my roof, and the smart monitoring system is amazing. Zero electricity bills for 6 months now!",
-        },
-        {
-            name: "Sneha Reddy",
-            role: "Apartment Complex, Hyderabad",
-            image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
-            rating: 5,
-            text: "Installed solar for our entire apartment complex. The common area electricity is now completely free. Great work by the Naha Energy team!",
-        },
-    ];
+    const [testimonials, setTestimonials] = useState<any[]>([]);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("nahasolar_testimonials_v1");
+        if (stored) {
+            setTestimonials(JSON.parse(stored).slice(0, 4));
+        } else {
+            const defaults = [
+                {
+                    id: "1",
+                    name: "Rajesh Kumar",
+                    role: "Homeowner, Mumbai",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Naha Energy transformed my home! My electricity bills dropped by 85%. The installation was smooth, and the team was incredibly professional. Best investment I've made!",
+                },
+                {
+                    id: "2",
+                    name: "Priya Sharma",
+                    role: "Business Owner, Delhi",
+                    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Our factory now runs on clean solar energy. The ROI was faster than expected, and we're contributing to a greener future. Highly recommend Naha Energy!",
+                },
+                {
+                    id: "3",
+                    name: "Amit Patel",
+                    role: "Villa Owner, Bangalore",
+                    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Exceptional service from start to finish. The solar panels look sleek on my roof, and the smart monitoring system is amazing. Zero electricity bills for 6 months now!",
+                },
+                {
+                    id: "4",
+                    name: "Sneha Reddy",
+                    role: "Apartment Complex, Hyderabad",
+                    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
+                    rating: 5,
+                    text: "Installed solar for our entire apartment complex. The common area electricity is now completely free. Great work by the Naha Energy team!",
+                },
+            ];
+            setTestimonials(defaults);
+        }
+    }, []);
 
     const containerVariants = {
         hidden: { opacity: 0 },
