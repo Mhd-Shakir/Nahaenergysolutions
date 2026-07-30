@@ -274,13 +274,43 @@ const ProjectsManager = () => {
                     </div>
 
                     <div className="space-y-2">
-                        <Label htmlFor="image">Image URL</Label>
-                        <Input
-                            id="image"
-                            placeholder="https://..."
-                            value={newProject.image || ""}
-                            onChange={(e) => handleInputChange("image", e.target.value)}
-                        />
+                        <Label htmlFor="image">Project Image (Upload or URL)</Label>
+                        <div className="flex gap-2">
+                            <Input
+                                id="image-upload"
+                                type="file"
+                                accept="image/*"
+                                className="w-auto"
+                                onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    if (!file) return;
+                                    
+                                    if (file.size > 2 * 1024 * 1024) {
+                                        toast({
+                                            title: "File too large",
+                                            description: "Image must be under 2MB",
+                                            variant: "destructive"
+                                        });
+                                        return;
+                                    }
+
+                                    const reader = new FileReader();
+                                    reader.onloadend = () => {
+                                        handleInputChange("image", reader.result as string);
+                                    };
+                                    reader.readAsDataURL(file);
+                                }}
+                            />
+                            <Input
+                                id="image-url"
+                                placeholder="Or enter URL..."
+                                value={newProject.image?.startsWith("data:") ? "" : (newProject.image || "")}
+                                onChange={(e) => handleInputChange("image", e.target.value)}
+                            />
+                        </div>
+                        {newProject.image && newProject.image.startsWith("data:") && (
+                            <p className="text-xs text-green-600 dark:text-green-400 mt-1">Image uploaded successfully</p>
+                        )}
                     </div>
 
                     <div className="space-y-2">
@@ -312,7 +342,7 @@ const ProjectsManager = () => {
                 <div className="grid sm:grid-cols-2 gap-4">
                     {projects.map((project) => (
                         <Card key={project.id} className="overflow-hidden">
-                            <div className="h-32 relative">
+                            <div className="aspect-video relative">
                                 <img
                                     src={project.image}
                                     alt={project.title}

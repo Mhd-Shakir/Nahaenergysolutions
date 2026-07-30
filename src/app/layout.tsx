@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
+import SocialSidebar from "@/components/SocialSidebar";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const spaceGrotesk = Space_Grotesk({
@@ -181,6 +182,7 @@ export default function RootLayout({
             </head>
             <body className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}>
                 <Providers>{children}</Providers>
+                <SocialSidebar />
             </body>
         </html>
     );

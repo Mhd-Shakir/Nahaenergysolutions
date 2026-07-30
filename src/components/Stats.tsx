@@ -7,31 +7,31 @@ const Stats = () => {
     const stats = [
         {
             icon: Users,
-            value: "1,000+",
+            value: "1,000",
             label: "Happy Customers",
-            suffix: "",
-            color: "from-blue-500 to-cyan-500",
+            suffix: "+",
+            color: "from-blue-400 to-cyan-400",
         },
         {
             icon: Zap,
             value: "100",
             label: "MW Installed",
             suffix: "+",
-            color: "from-yellow-500 to-orange-500",
+            color: "from-yellow-400 to-amber-500",
         },
         {
             icon: Leaf,
             value: "50,000",
             label: "Tons CO₂ Saved",
             suffix: "+",
-            color: "from-green-500 to-emerald-500",
+            color: "from-green-400 to-emerald-500",
         },
         {
             icon: TrendingUp,
             value: "85",
             label: "Average Savings",
             suffix: "%",
-            color: "from-purple-500 to-pink-500",
+            color: "from-purple-400 to-pink-500",
         },
     ];
 
@@ -54,107 +54,110 @@ const Stats = () => {
     ];
 
     return (
-        <section className="py-20 md:py-24 bg-gradient-to-br from-energy-slate via-energy-slate-light to-energy-slate text-primary-foreground relative overflow-hidden">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 opacity-10">
-                <div className="absolute top-0 left-0 w-96 h-96 bg-primary rounded-full blur-3xl animate-pulse-glow" />
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-secondary rounded-full blur-3xl animate-pulse-glow delay-1000" />
+        <section className="py-24 md:py-32 bg-gradient-to-b from-[#0a192f] via-[#112240] to-[#0a192f] text-primary-foreground relative overflow-hidden">
+            {/* Background Texture - Pure CSS Grid */}
+            <div 
+                className="absolute inset-0 z-0 opacity-5" 
+                style={{
+                    backgroundImage: 'linear-gradient(rgba(255, 255, 255, 1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 1) 1px, transparent 1px)',
+                    backgroundSize: '50px 50px',
+                    maskImage: 'radial-gradient(ellipse at center, black, transparent 80%)'
+                }} 
+            />
+            
+            {/* Animated Ambient Glow */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none mix-blend-screen">
+                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-500/30 rounded-full blur-[100px] animate-pulse-glow" />
+                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/20 rounded-full blur-[100px] animate-pulse-glow delay-1000" />
             </div>
 
             <div className="container mx-auto px-4 relative z-10">
                 {/* Section Header */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-center mb-16"
+                    transition={{ duration: 0.6 }}
+                    className="text-center mb-20"
                 >
-                    <span className="text-secondary font-semibold text-sm uppercase tracking-wider">
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-cyan-400 font-medium text-sm tracking-widest uppercase mb-6 shadow-sm">
                         Our Impact
                     </span>
-                    <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mt-2 mb-4">
+                    <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
                         Powering India's{" "}
-                        <span className="text-gradient-energy">Green Revolution</span>
+                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-emerald-400 to-cyan-400">
+                            Green Revolution
+                        </span>
                     </h2>
-                    <p className="text-primary-foreground/80 max-w-2xl mx-auto text-lg">
-                        Numbers that speak for themselves. Join our growing community of clean energy champions!
+                    <p className="text-white/60 max-w-2xl mx-auto text-lg md:text-xl font-light leading-relaxed">
+                        Numbers that speak for themselves. Join our growing community of clean energy champions paving the way to a sustainable future!
                     </p>
                 </motion.div>
 
-                {/* Stats Grid */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-16">
+                {/* Stats Grid - Sleek typography focus */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-24 max-w-6xl mx-auto">
                     {stats.map((stat, index) => (
                         <motion.div
                             key={index}
-                            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ scale: 1.05, y: -5 }}
-                            className="relative group"
+                            transition={{ duration: 0.6, delay: index * 0.1 }}
+                            className="relative group flex flex-col items-center text-center lg:items-start lg:text-left"
                         >
-                            {/* Mobile: No box styling, Desktop: Keep boxes */}
-                            <div className="lg:bg-white/10 lg:backdrop-blur-md lg:rounded-2xl lg:p-8 lg:border lg:border-white/20 lg:hover:bg-white/15 transition-all duration-300 text-center">
-                                {/* Icon with Gradient */}
-                                <div className="inline-flex items-center justify-center w-14 h-14 lg:w-16 lg:h-16 rounded-2xl bg-gradient-to-br from-white/20 to-white/5 mb-4 lg:mb-6 group-hover:scale-110 transition-transform">
-                                    <div className={`w-10 h-10 lg:w-12 lg:h-12 rounded-xl bg-gradient-to-br ${stat.color} flex items-center justify-center`}>
-                                        <stat.icon className="w-5 h-5 lg:w-6 lg:h-6 text-white" />
-                                    </div>
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className={`p-2.5 rounded-xl bg-gradient-to-br ${stat.color} shadow-[0_0_20px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-300`}>
+                                    <stat.icon className="w-5 h-5 text-white" />
                                 </div>
-
-                                {/* Value */}
-                                <div className="font-display text-3xl lg:text-4xl xl:text-5xl font-bold mb-1 lg:mb-2">
-                                    {stat.value}
-                                    <span className="text-secondary">{stat.suffix}</span>
-                                </div>
-
-                                {/* Label */}
-                                <div className="text-primary-foreground/70 font-medium text-sm lg:text-base">
+                                <div className="text-white/50 font-semibold text-xs md:text-sm uppercase tracking-widest">
                                     {stat.label}
                                 </div>
-
-                                {/* Shine Effect - Desktop only */}
-                                <div className="hidden lg:block absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-x-full group-hover:translate-x-full" />
+                            </div>
+                            <div className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter">
+                                <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
+                                    {stat.value}
+                                </span>
+                                <span className={`text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-br ${stat.color}`}>
+                                    {stat.suffix}
+                                </span>
                             </div>
                         </motion.div>
                     ))}
                 </div>
 
-                {/* Certifications */}
+                {/* Certifications - Unified Glass Panel */}
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 40 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
+                    transition={{ duration: 0.8 }}
+                    className="max-w-5xl mx-auto"
                 >
-                    <div className="text-center mb-8">
-                        <h3 className="font-display text-2xl md:text-3xl font-bold mb-2">
+                    <div className="text-center mb-10">
+                        <h3 className="font-display text-2xl md:text-3xl font-bold mb-3 text-white">
                             Certified Excellence
                         </h3>
-                        <p className="text-primary-foreground/70">
-                            Trusted by industry leaders and backed by certifications
+                        <p className="text-white/50">
+                            Trusted by industry leaders and backed by leading certifications
                         </p>
                     </div>
 
-                    <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-4 bg-white/5 backdrop-blur-xl rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl relative overflow-hidden group">
+                        {/* Shimmer Effect */}
+                        <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent skew-x-12 group-hover:animate-[shimmer_2s_infinite]" />
+                        
                         {certifications.map((cert, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6 + index * 0.1 }}
-                                whileHover={{ y: -5 }}
-                                className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20 hover:bg-white/15 transition-all duration-300 text-center"
-                            >
-                                <cert.icon className="w-12 h-12 text-secondary mx-auto mb-4" />
-                                <h4 className="font-display text-lg font-bold mb-1">
+                            <div key={index} className="flex flex-col items-center text-center flex-1 relative z-10 w-full">
+                                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 mb-5 shadow-[0_0_30px_rgba(255,255,255,0.02)] transition-colors hover:bg-white/10">
+                                    <cert.icon className="w-8 h-8 text-cyan-400" />
+                                </div>
+                                <h4 className="font-display text-xl font-bold mb-2 text-white">
                                     {cert.title}
                                 </h4>
-                                <p className="text-sm text-primary-foreground/70">
+                                <p className="text-sm text-white/50">
                                     {cert.description}
                                 </p>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </motion.div>

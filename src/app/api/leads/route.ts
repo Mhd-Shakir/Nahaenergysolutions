@@ -1,20 +1,18 @@
 import { NextResponse } from 'next/server';
-import dbConnect from '@/lib/mongodb';
-import Lead from '@/models/Lead';
+import { supabase } from '@/lib/supabase';
 
 export async function GET() {
   try {
-    await dbConnect();
-    // Use .sort({ createdAt: -1 }) to get newest leads first
-    const leads = await Lead.find({}).sort({ createdAt: -1 });
+    const { data: leads, error } = await supabase
+      .from('leads')
+      .select('*')
+      .order('created_at', { ascending: false });
+      
+    if (error) {
+      throw error;
+    }
     
-    // Convert Mongoose _id to id to match our frontend interface without conflicts
-    const formattedLeads = leads.map(lead => {
-      const { _id, ...rest } = lead.toObject();
-      return { id: _id.toString(), ...rest };
-    });
-    
-    return NextResponse.json(formattedLeads);
+    return NextResponse.json(leads || []);
   } catch (error) {
     console.error('GET Error:', error);
     return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 });
@@ -23,17 +21,29 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    await dbConnect();
-    const newLead = await request.json();
+    const newLeadData = await request.json();
     
-    const lead = await Lead.create({
-      ...newLead,
-      status: "New",
-    });
+    const { data: lead, error } = await supabase
+      .from('leads')
+      .insert([
+        {
+          name: newLeadData.name,
+          email: newLeadData.email,
+          phone: newLeadData.phone,
+          service: newLeadData.service,
+          monthlyBill: newLeadData.monthlyBill,
+          message: newLeadData.message,
+          status: 'New'
+        }
+      ])
+      .select()
+      .single();
 
-    const formattedLead = { ...lead.toObject(), id: lead._id.toString() };
+    if (error) {
+      throw error;
+    }
 
-    return NextResponse.json({ success: true, lead: formattedLead });
+    return NextResponse.json({ success: true, lead });
   } catch (error) {
     console.error('POST Error:', error);
     return NextResponse.json({ error: 'Failed to complete quote request' }, { status: 500 });
@@ -42,10 +52,16 @@ export async function POST(request: Request) {
 
 export async function PATCH(request: Request) {
   try {
-    await dbConnect();
     const { id, status } = await request.json();
     
-    await Lead.findByIdAndUpdate(id, { status });
+    const { error } = await supabase
+      .from('leads')
+      .update({ status })
+      .eq('id', id);
+
+    if (error) {
+      throw error;
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
@@ -56,13 +72,19 @@ export async function PATCH(request: Request) {
 
 export async function DELETE(request: Request) {
   try {
-    await dbConnect();
     const { searchParams } = new URL(request.url);
     const id = searchParams.get('id');
     
     if (!id) return NextResponse.json({ error: 'Missing ID' }, { status: 400 });
 
-    await Lead.findByIdAndDelete(id);
+    const { error } = await supabase
+      .from('leads')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      throw error;
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {

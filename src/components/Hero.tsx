@@ -35,8 +35,8 @@ const Hero = () => {
           quality={85}
           priority
         />
-        <div className="absolute inset-0 gradient-hero opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-b from-solar-slate/90 via-solar-slate/70 to-solar-slate/90" />
+        <div className="absolute inset-0 gradient-hero opacity-40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-solar-slate/60 via-solar-slate/40 to-solar-slate/60" />
       </div>
 
       {/* Animated Glow Effect */}
@@ -58,8 +58,8 @@ const Hero = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-solar-green/20 border border-solar-green/30 mb-6"
             >
-              <Zap className="w-4 h-4 text-solar-green" />
-              <span className="text-solar-green text-sm font-medium">
+              <Zap className="w-4 h-4 text-white" />
+              <span className="text-white text-sm font-medium">
                 India's Trusted Solar Partner
               </span>
             </motion.div>
@@ -78,7 +78,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0"
+              className="text-lg md:text-xl text-white mb-8 max-w-xl mx-auto lg:mx-0"
             >
               Join thousands of homeowners saving up to 90% on electricity bills
               with Nahasolar's premium solar solutions. Get a free quote today!

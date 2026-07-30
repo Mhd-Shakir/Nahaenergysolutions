@@ -46,9 +46,20 @@ const Admin = () => {
     try {
       const res = await fetch('/api/leads');
       const data = await res.json();
-      setLeads(data);
+      if (Array.isArray(data)) {
+        setLeads(data);
+      } else {
+        console.error("Failed to fetch leads:", data);
+        setLeads([]);
+        toast({
+          title: "Database Connection Error",
+          description: "Could not fetch leads. Have you created the Supabase table and restarted the dev server?",
+          variant: "destructive"
+        });
+      }
     } catch (error) {
       console.error(error);
+      setLeads([]);
     }
     setIsLoading(false);
   };

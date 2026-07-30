@@ -27,17 +27,6 @@ const Footer = () => {
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
               Empowering India with clean, renewable energy. Premium solar solutions for a sustainable tomorrow.
             </p>
-            <div className="flex items-center gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-8 h-8 rounded-full bg-solar-slate-light/50 flex items-center justify-center text-muted-foreground hover:bg-solar-green hover:text-white transition-all duration-300"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
-            </div>
           </div>
 
           {/* Quick Links */}
