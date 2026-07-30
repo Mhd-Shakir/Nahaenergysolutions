@@ -71,10 +71,10 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
           initial={{ y: -100 }}
           animate={{ y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`rounded-full transition-all duration-300 ${isScrolled
+          className={`transition-all duration-300 ${isScrolled || isMobileMenuOpen
             ? "bg-background/95 backdrop-blur-md shadow-lg"
             : "bg-transparent"
-            }`}
+            } ${isMobileMenuOpen ? "rounded-3xl" : "rounded-full"}`}
         >
           {/* Navbar content */}
           <div className="px-4 md:px-6 flex items-center justify-between h-12 sm:h-14 md:h-14 lg:h-16 xl:h-16">
@@ -87,7 +87,7 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
                 <Image
                   src={nahaLogo}
                   alt="Naha Energy Solutions"
-                  className={`h-8 w-auto sm:h-9 md:h-9 lg:h-10 xl:h-11 object-contain transition-all duration-300 ${!isScrolled && !forceDark ? "brightness-0 invert" : ""
+                  className={`h-8 w-auto sm:h-9 md:h-9 lg:h-10 xl:h-11 object-contain transition-all duration-300 ${(!isScrolled && !isMobileMenuOpen) && !forceDark ? "brightness-0 invert" : ""
                     }`}
                 // Note: Next/Image handles 'src' as object if imported. 
                 // If using classNames for sizing, width/height props might be overridden or need to be set to 'auto' via CSS.
@@ -101,7 +101,7 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
                 <button
                   key={link.name}
                   onClick={() => scrollToSection(link.href)}
-                  className={`font-medium text-xs lg:text-sm transition-colors hover:text-primary ${isScrolled || forceDark ? "text-foreground" : "text-primary-foreground"
+                  className={`font-medium text-xs lg:text-sm transition-colors hover:text-primary ${isScrolled || isMobileMenuOpen || forceDark ? "text-foreground" : "text-primary-foreground"
                     }`}
                 >
                   {link.name}
@@ -128,9 +128,9 @@ const Navbar = ({ forceDark = false }: NavbarProps) => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             >
               {isMobileMenuOpen ? (
-                <X className={`w-4 h-4 sm:w-5 sm:h-5 ${isScrolled || forceDark ? "text-foreground" : "text-primary-foreground"}`} />
+                <X className={`w-4 h-4 sm:w-5 sm:h-5 ${isScrolled || isMobileMenuOpen || forceDark ? "text-foreground" : "text-primary-foreground"}`} />
               ) : (
-                <Menu className={`w-4 h-4 sm:w-5 sm:h-5 ${isScrolled || forceDark ? "text-foreground" : "text-primary-foreground"}`} />
+                <Menu className={`w-4 h-4 sm:w-5 sm:h-5 ${isScrolled || isMobileMenuOpen || forceDark ? "text-foreground" : "text-primary-foreground"}`} />
               )}
             </button>
           </div>

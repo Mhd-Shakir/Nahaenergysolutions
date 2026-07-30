@@ -194,17 +194,17 @@ const Projects = () => {
                                         </p>
 
                                         {/* Stats */}
-                                        <div className="grid grid-cols-2 gap-4">
-                                            <div className="bg-muted/50 rounded-lg p-3">
+                                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
+                                            <div className="bg-muted/50 rounded-lg p-2 sm:p-3">
                                                 <div className="flex items-center gap-1 mb-1">
-                                                    <Zap className="w-4 h-4 text-primary" />
-                                                    <span className="text-xs text-muted-foreground">Capacity</span>
+                                                    <Zap className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+                                                    <span className="text-[10px] sm:text-xs text-muted-foreground truncate">Capacity</span>
                                                 </div>
-                                                <div className="font-bold text-lg">{project.capacity}</div>
+                                                <div className="font-bold text-sm sm:text-base lg:text-lg truncate">{project.capacity}</div>
                                             </div>
-                                            <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg p-3 border border-green-500/20">
-                                                <div className="text-xs text-muted-foreground mb-1">Savings</div>
-                                                <div className="font-bold text-lg text-green-600 dark:text-green-400">
+                                            <div className="bg-gradient-to-br from-green-500/10 to-emerald-500/10 rounded-lg p-2 sm:p-3 border border-green-500/20">
+                                                <div className="text-[10px] sm:text-xs text-muted-foreground mb-1 truncate">Savings</div>
+                                                <div className="font-bold text-sm sm:text-base lg:text-lg text-green-600 dark:text-green-400 truncate">
                                                     {project.savings}
                                                 </div>
                                             </div>

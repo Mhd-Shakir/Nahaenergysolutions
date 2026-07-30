@@ -88,9 +88,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <a href="mailto:info@nahaenergy.com" className="flex items-center gap-3 text-muted-foreground hover:text-solar-green transition-colors">
-                  <Mail className="w-4 h-4 text-solar-green flex-shrink-0" />
-                  <span>info@nahaenergy.com</span>
+                <a href="mailto:nahaenergysolutions01@gmail.com" className="flex items-center gap-3 text-muted-foreground hover:text-solar-green transition-colors">
+                  <Mail className="w-5 h-5 text-solar-green" />
+                  <span>nahaenergysolutions01@gmail.com</span>
                 </a>
               </li>
             </ul>
@@ -101,7 +101,7 @@ const Footer = () => {
         <div className="border-t border-solar-slate-light/30 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-muted-foreground">
           <p className="text-center md:text-left">
             © {currentYear} Naha Energy Solutions. All rights reserved. <span className="hidden md:inline mx-2">|</span><br className="md:hidden" />
-            Powered by <a href="https://fikavo.com" target="_blank" rel="noopener noreferrer" className="hover:text-solar-green transition-colors">fikavo.com</a>
+            Powered by <a href="https://fikavo.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-solar-green transition-colors">fikavo.com</a>
           </p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-solar-green transition-colors">Privacy Policy</a>

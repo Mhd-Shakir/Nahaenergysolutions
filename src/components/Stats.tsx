@@ -113,11 +113,11 @@ const Stats = () => {
                                     {stat.label}
                                 </div>
                             </div>
-                            <div className="font-display text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter">
+                            <div className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter">
                                 <span className="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/70">
                                     {stat.value}
                                 </span>
-                                <span className={`text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-br ${stat.color}`}>
+                                <span className={`text-3xl sm:text-4xl lg:text-5xl bg-clip-text text-transparent bg-gradient-to-br ${stat.color}`}>
                                     {stat.suffix}
                                 </span>
                             </div>

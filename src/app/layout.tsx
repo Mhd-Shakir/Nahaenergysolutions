@@ -99,6 +99,14 @@ export const metadata: Metadata = {
         // yandex: 'your-yandex-verification',
         // bing: 'your-bing-verification',
     },
+    icons: {
+        icon: [
+            { url: '/icon.png' },
+            new URL('/icon.png', 'https://nahasolar.com')
+        ],
+        shortcut: '/icon.png',
+        apple: '/icon.png',
+    },
 };
 
 export default function RootLayout({

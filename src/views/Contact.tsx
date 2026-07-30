@@ -40,8 +40,8 @@ const Contact = () => {
                             {
                                 icon: Mail,
                                 title: "Email",
-                                info: "info@nahaenergy.com",
-                                link: "mailto:info@nahaenergy.com"
+                                info: "nahaenergysolutions01@gmail.com",
+                                link: "mailto:nahaenergysolutions01@gmail.com"
                             },
                             {
                                 icon: MapPin,
